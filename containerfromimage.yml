@@ -1,0 +1,6 @@
+---
+- hosts: all
+  become: ture
+  tasks:
+  - name: creating docker image using docker command
+    command: docker run -d --name conatiner -p 8080:8080 dockerimage
