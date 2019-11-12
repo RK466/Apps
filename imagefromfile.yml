@@ -1,0 +1,8 @@
+---
+- hosts: all
+  become: true
+  tasks:
+  - name: create image from a dockerfile
+    command: docker build -t dockerimage .
+    args:
+      chdir: /opt/dock
