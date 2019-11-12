@@ -1,5 +1,5 @@
 ---
-- hosts: '{{ser}}'                   # Giving variables from command line
+- hosts: '{{ser}}'                   # Giving host name from command line
   user: ram
   sudo: yes
   vars:                             # Assigning the package name to the variable
