@@ -1,0 +1,19 @@
+---
+- hosts: all
+  become: true
+  tasks:
+  - name: stop the docker container
+    command: docker stop container
+    ignore_errors: yes
+  - name: remove  docker container
+    command: docker rm container
+    ignore_errors: yes
+  - name: remove docker image
+    command: docker rmi dockerimage
+    ignore_errors: yes
+  - name: build docker image
+    command: docker build -t dockerimage1 .
+    args:
+      chdir: /opt/dock
+  - name: build docker container
+    command: docker run -d --name container1 -p 8080:8080 dockerimage1
