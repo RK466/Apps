@@ -1,0 +1,23 @@
+---
+- hosts: '{{ser}}'                   # Giving host name from command line
+  user: ram
+  sudo: yes
+  vars:                             # Assigning the package name to the variable
+       pkg: httpd
+  vars_files:                       # Declaring the package name in a file
+        - file.yml
+  vars_prompt:                      # Taking input from the user
+         - name: pkg2
+           prompt: Enter package
+           private: no
+  tasks:
+    - name: Insatll httpd package
+      yum: name={{pkg}} state=installed
+    - name: install curl package
+      yum: name={{pkg1}} state=install
+    - name: Install telnet package
+      yum: name={{pkg2}} state=installed
+    - name: copy index file
+      copy: src=index.html dest=/var/www/html/index.html
+    - name: start the httpd 
+      service: name={{pkg}} state=started
